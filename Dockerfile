@@ -37,6 +37,7 @@ COPY --from=builder /tmp/bin/gcsfuse /usr/local/bin/gcsfuse
 RUN apk add --update --no-cache postgresql-client
 RUN apk add --update --no-cache pigz
 
+RUN mkdir -p /mnt/gcs-bucket
 #ENTRYPOINT ["gcsfuse", "-o", "allow_other", "--foreground", "--implicit-dirs", "/gcs"]
 WORKDIR /
 CMD [ "/bin/sh" ]

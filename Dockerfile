@@ -32,10 +32,12 @@ FROM alpine:3.13
 RUN apk add --update --no-cache bash ca-certificates fuse
 
 COPY --from=builder /tmp/bin/gcsfuse /usr/local/bin/gcsfuse
-COPY --from=builder /tmp/sbin/mount.gcsfuse /usr/sbin/mount.gcsfuse
+# COPY --from=builder /tmp/sbin/mount.gcsfuse /usr/sbin/mount.gcsfuse
 
 RUN apk add --update --no-cache postgresql-client
 RUN apk add --update --no-cache pigz
 
 #ENTRYPOINT ["gcsfuse", "-o", "allow_other", "--foreground", "--implicit-dirs", "/gcs"]
+WORKDIR /
 CMD [ "/bin/sh" ]
+
